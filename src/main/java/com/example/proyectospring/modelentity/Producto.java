@@ -13,20 +13,13 @@ public class Producto {
 
     @Column()
     private String name;
+
     @Column()
     private String description;
+
     @Column()
     private double price;
+
     @Column()
     private int quantity;
-
-
-//    @ManyToMany ()
-//    @JoinTable(
-//            name="chef_postre",
-//            joinColumns = @JoinColumn(name="chef_id"),
-//            inverseJoinColumns = @JoinColumn(name="postre_id")
-//    )
-//    private List<Postre> postres;
-
 }

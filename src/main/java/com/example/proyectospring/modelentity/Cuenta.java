@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Entity
-@Table(name="cuenta")
+@Table(name="cuentas")
 @Data()
 public class Cuenta {
     @Id
@@ -16,7 +16,18 @@ public class Cuenta {
     @Column()
     private Date date;
 
+    @Column()
+    private int quantity;
+
     @ManyToOne
-    @JoinColumn(name="cliente_id", referencedColumnName = "id")
+    @JoinColumn(name="cliente_id",
+                referencedColumnName = "id",
+                nullable = false)
     private Cliente client;
+
+    @ManyToOne
+    @JoinColumn(name="producto_id",
+                referencedColumnName = "id",
+                nullable = false)
+    private Producto product;
 }

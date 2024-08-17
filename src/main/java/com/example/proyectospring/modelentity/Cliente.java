@@ -24,13 +24,4 @@ public class Cliente {
 
     @Column()
     private String phone;
-
-    // Es con otra tabla
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Cuenta> cuentas;
-
-    // Es con una llave foranea
-    @OneToOne
-    @JoinColumn(name="cliente_id", referencedColumnName = "id")
-    private Cliente clientID;
 }

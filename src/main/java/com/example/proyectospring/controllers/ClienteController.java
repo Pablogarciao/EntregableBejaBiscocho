@@ -1,23 +1,26 @@
 package com.example.proyectospring.controllers;
 
 import com.example.proyectospring.modelentity.Cliente;
-import com.example.proyectospring.services.IClienteService;
+import com.example.proyectospring.services.Interfaces.IClienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
+
 @RestController()
 @RequestMapping("/api")
 public class ClienteController {
     @Autowired
     private IClienteService clientesService;
+
     @GetMapping("/cliente")
     public List<Cliente> getCliente() {
         System.out.println("getCliente");
         return clientesService.findAll();
     }
+
     @PostMapping("/cliente")
     public ResponseEntity<?> postCliente (@Valid @RequestBody Cliente cliente) {
         System.out.println("postCliente");
@@ -35,8 +38,8 @@ public class ClienteController {
     }
     
     @DeleteMapping("/cliente/{id}")
-    public void deleteCliente
-            (@PathVariable Long id) {
+    public void deleteCliente (@PathVariable Long id) {
+        System.out.println("deleteCliente");
         clientesService.deleteById(id);
     }
 
@@ -58,17 +61,19 @@ public class ClienteController {
     }
 
     @PutMapping("/cliente/{id}")
-    public Cliente putCliente
-            (@RequestBody Cliente Cliente, @PathVariable Long id) {
+    public Cliente putCliente (@RequestBody Cliente Cliente, @PathVariable Long id) {
+        System.out.println("putCliente");
+
         Cliente c= clientesService.findById(id);
+
         if(c==null){
             throw new RuntimeException("Cliente no encontrado");
         }
+
         c.setName(Cliente.getName());
         c.setEmail(Cliente.getEmail());
         c.setPhone(Cliente.getPhone());
         c.setAddress(Cliente.getAddress());
-
 
         return clientesService.save(c);
     }

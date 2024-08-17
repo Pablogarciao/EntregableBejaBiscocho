@@ -1,7 +1,7 @@
 package com.example.proyectospring.controllers;
 
 import com.example.proyectospring.modelentity.Producto;
-import com.example.proyectospring.services.IProductoService;
+import com.example.proyectospring.services.Interfaces.IProductoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,11 +13,13 @@ import java.util.*;
 public class ProductoController {
     @Autowired
     private IProductoService productosService;
+
     @GetMapping("/producto")
     public List<Producto> getProductos() {
         System.out.println("getProductos");
         return productosService.findAll();
     }
+
     @PostMapping("/producto")
     public ResponseEntity<?> postProducto (@Valid @RequestBody Producto producto) {
         System.out.println("postCliente");
@@ -35,8 +37,8 @@ public class ProductoController {
     }
 
     @DeleteMapping("/producto/{id}")
-    public void deleteCliente
-            (@PathVariable Long id) {
+    public void deleteCliente (@PathVariable Long id) {
+        System.out.println("deleteCliente");
         productosService.deleteById(id);
     }
 
@@ -58,17 +60,19 @@ public class ProductoController {
     }
 
     @PutMapping("/producto/{id}")
-    public Producto putProducto
-            (@RequestBody Producto Producto, @PathVariable Long id) {
+    public Producto putProducto (@RequestBody Producto Producto, @PathVariable Long id) {
+        System.out.println("putProducto");
+
         Producto p= productosService.findById(id);
+
         if(p==null){
             throw new RuntimeException("Producto no encontrado");
         }
+
         p.setName(Producto.getName());
         p.setDescription(Producto.getDescription());
         p.setPrice(Producto.getPrice());
         p.setQuantity(Producto.getQuantity());
-
 
         return productosService.save(p);
     }
