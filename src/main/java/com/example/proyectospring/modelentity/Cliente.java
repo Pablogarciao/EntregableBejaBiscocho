@@ -14,21 +14,23 @@ public class Cliente {
 
     @Column()
     private String name;
+
     @Column()
     private String address;
+
     @Column()
     @Email()
     private String email;
+
     @Column()
     private String phone;
 
+    // Es con otra tabla
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Cuenta> cuentas;
 
-//    @ManyToMany ()
-//    @JoinTable(
-//            name="chef_postre",
-//            joinColumns = @JoinColumn(name="chef_id"),
-//            inverseJoinColumns = @JoinColumn(name="postre_id")
-//    )
-//    private List<Postre> postres;
-
+    // Es con una llave foranea
+    @OneToOne
+    @JoinColumn(name="cliente_id", referencedColumnName = "id")
+    private Cliente clientID;
 }

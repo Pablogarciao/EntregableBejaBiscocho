@@ -57,7 +57,7 @@ public class ClienteController {
         return ResponseEntity.status(200).body(c);
     }
 
-    @PutMapping("/Cliente/{id}")
+    @PutMapping("/cliente/{id}")
     public Cliente putCliente
             (@RequestBody Cliente Cliente, @PathVariable Long id) {
         Cliente c= clientesService.findById(id);
