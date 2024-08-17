@@ -50,7 +50,7 @@ public class ClienteController {
         Map<String,String> response= new HashMap<>();
 
         if( c==null ) {
-            response.put("message","dessert not found");
+            response.put("message","client not found");
             return ResponseEntity.status(404).body(response);
         }
 
