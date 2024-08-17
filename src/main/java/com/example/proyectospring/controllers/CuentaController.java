@@ -73,6 +73,7 @@ public class CuentaController {
         }
 
         c.setDate(Cuenta.getDate());
+        c.setQuantity(Cuenta.getQuantity());
         c.setClient(Cuenta.getClient());
         c.setProduct(Cuenta.getProduct());
 
