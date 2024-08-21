@@ -76,4 +76,19 @@ public class ProductoController {
 
         return productosService.save(p);
     }
+
+    @PutMapping("/producto/stock/{id}")
+    public Producto addStock (@RequestBody Producto producto, @PathVariable Long id) {
+        System.out.println("addStock");
+
+        Producto p= productosService.findById(id);
+
+        if(p==null){
+            throw new RuntimeException("Producto no encontrado");
+        }
+
+        p.setQuantity(p.getQuantity() + producto.getQuantity());
+
+        return productosService.save(p);
+    }
 }
