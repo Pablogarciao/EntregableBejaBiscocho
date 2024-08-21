@@ -10,7 +10,6 @@ import java.util.List;
 
 @Service
 public class ProductoService implements IProductoService {
-
     @Autowired
     private IProductoDAO productoDAO;
 

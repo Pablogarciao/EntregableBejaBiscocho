@@ -1,6 +1,7 @@
 package com.example.proyectospring.modelentity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.util.Date;
@@ -17,17 +18,16 @@ public class Cuenta {
     private Date date;
 
     @Column()
+    @NotNull()
     private int quantity;
 
     @ManyToOne
     @JoinColumn(name="cliente_id",
-                referencedColumnName = "id",
                 nullable = false)
     private Cliente client;
 
     @ManyToOne
     @JoinColumn(name="producto_id",
-                referencedColumnName = "id",
                 nullable = false)
     private Producto product;
 }

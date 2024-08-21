@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,9 +28,10 @@ public class CuentaController {
     public ResponseEntity<?> postCuenta (@Valid @RequestBody Cuenta cuenta) {
         System.out.println("postCuenta");
 
-        Map<String,String> response= new HashMap<>();
+        Map<String,String> response = new HashMap<>();
 
         try{
+            cuenta.setDate(new Date());
             cuentaService.save(cuenta);
         } catch (Exception e){
             response.put("message",e.getMessage());
